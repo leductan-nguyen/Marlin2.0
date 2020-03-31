@@ -188,7 +188,7 @@
 #if (SK_MODEL <= SK_MINI_USING_TITAN)
   #define CUSTOM_MACHINE_NAME "SK-Mini"
 #else
-  #define CUSTOM_MACHINE_NAME "SK-Go"
+  #define CUSTOM_MACHINE_NAME "3DRaion SKR"
 #endif
 
 // Printer's unique ID, used by some programs to differentiate between machines.
@@ -764,6 +764,12 @@
   #define Y_DRIVER_TYPE  TMC2209
   #define Z_DRIVER_TYPE  TMC2209
   #define E0_DRIVER_TYPE TMC2209
+// add 2208 choice for 3DRaion SKR
+#elif (SK_DRIVER == 2208)
+  #define X_DRIVER_TYPE  TMC2208
+  #define Y_DRIVER_TYPE  TMC2208
+  #define Z_DRIVER_TYPE  TMC2208
+  #define E0_DRIVER_TYPE TMC2208
 #elif (SK_DRIVER == 2130)
   #define X_DRIVER_TYPE  TMC2130
   #define Y_DRIVER_TYPE  TMC2130
@@ -1336,7 +1342,8 @@
  * For other boards you may need to define FIL_RUNOUT_PIN, FIL_RUNOUT2_PIN, etc.
  * By default the firmware assumes HIGH=FILAMENT PRESENT.
  */
-#define FILAMENT_RUNOUT_SENSOR
+// 3DRaion disable for now
+// #define FILAMENT_RUNOUT_SENSOR
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)
   #define NUM_RUNOUT_SENSORS   1     // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
   // #define FIL_RUNOUT_INVERTING false // old SK-Mini: false
@@ -1511,6 +1518,7 @@
  * Add a bed leveling sub-menu for ABL or MBL.
  * Include a guided procedure if manual probing is enabled.
  */
+// 3DRaion disable for now
 #define LCD_BED_LEVELING
 
 #if ENABLED(LCD_BED_LEVELING)
@@ -1565,15 +1573,15 @@
 
 // Homing speeds (mm/m)
 #if (SK_DRIVER == 2209)
-#define HOMING_FEEDRATE_XY (30*60)
+  #define HOMING_FEEDRATE_XY (30*60)
 #else
-#define HOMING_FEEDRATE_XY (60*60)
+  #define HOMING_FEEDRATE_XY (60*60)
 #endif
 
 #if SK_BELTED_Z_EXP
-#define HOMING_FEEDRATE_Z  (3*60)
+  #define HOMING_FEEDRATE_Z  (3*60)
 #else
-#define HOMING_FEEDRATE_Z  (15*60)
+  #define HOMING_FEEDRATE_Z  (15*60)
 #endif
 
 // Validate that endstops are triggered on homing moves
